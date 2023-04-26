@@ -49,11 +49,12 @@ namespace QoLUtility
             bool doDependenciesExist = checkDependencies();
             if (doDependenciesExist)
             {
-                MessageBox.Show("Works!");
+                initializeSystem();
             }
             else
             {
-                MessageBox.Show("Not works");
+                MessageBox.Show($"We could not detect one or more of the critical parts needed to function. Please ensure that you placed {this.Text} into your SPT folder.\n\nShutting down to avoid errors.", this.Text, MessageBoxButtons.OK);
+                Application.Exit();
             }
         }
 
@@ -84,6 +85,13 @@ namespace QoLUtility
             return allExist;
         }
 
+        public void initializeSystem()
+        {
+            clearUI(mainMenu);
+            listSystem(selectionMenu, mainMenu);
+
+        }
+
         private void clearUI(Panel control)
         {
             // server box
@@ -106,7 +114,7 @@ namespace QoLUtility
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void mainMenu_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -126,7 +134,7 @@ namespace QoLUtility
             }
         }
 
-        public void listSystem(string[] arr)
+        public void listSystem(string[] arr, Control area)
         {
             clearUI(mainMenu);
             for (int i = 0; i < arr.Length; i++)
@@ -136,7 +144,7 @@ namespace QoLUtility
                 lbl.AutoSize = false;
                 lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
                 lbl.TextAlign = ContentAlignment.MiddleLeft;
-                lbl.Size = new Size(mainMenu.Size.Width - 2, default_item_height);
+                lbl.Size = new Size(area.Size.Width - 2, default_item_height);
                 lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
                 lbl.Font = idleFont;
                 lbl.BackColor = idleColor;
@@ -149,7 +157,7 @@ namespace QoLUtility
                 lbl.MouseUp += new MouseEventHandler(lbl_MouseUp);
                 lbl.TextAlign = ContentAlignment.MiddleLeft;
                 lbl.Visible = true;
-                mainMenu.Controls.Add(lbl);
+                area.Controls.Add(lbl);
             }
         }
 
