@@ -10,33 +10,44 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 namespace QoLUtility
 {
     public partial class mainForm : Form
     {
-        public string currentDir = Environment.CurrentDirectory;
+        public string currentDir = "F:\\SPT Iterations\\SPT 3.5.2";
 
-        int default_item_height = 22; // item height
+        /*         LIST SYSTEM         */
+        int default_item_height = 35; // item height
         int default_item_loc_x = 1; // keep 1
         int default_item_loc_y = 16; // item location startpoint
-        int default_item_spacer = 22; // spacer between item to item
+        int default_item_spacer = 35; // spacer between item to item
+
+        int default_item_height_title = 45; // title item height
+        int default_item_spacer_title = 45; // spacer between title items
 
         public Color idleText = Color.LightGray;
         public Color idleColor = Color.FromArgb(255, 28, 28, 28);
         public Color hoverColor = Color.FromArgb(255, 32, 32, 32);
         public Color selectColor = Color.FromArgb(255, 35, 35, 35);
         public Color selectText = Color.DodgerBlue;
+
         public Font idleFont = new Font("Bahnschrift Light", 11, FontStyle.Regular);
+        public Font idleFontTitle = new Font("Bahnschrift Light", 15, FontStyle.Regular);
+        /*         LIST SYSTEM         */
 
         public string[] selectionMenu =
         {
+            "TITLE: QoL Utility  |  Main Menu",
+            "SPACER",
             "Bots",
             "Traders",
             "Raids",
             "Player",
-            "QoL"
+            "QoL",
+            "Exit"
         };
 
         public mainForm()
@@ -50,6 +61,7 @@ namespace QoLUtility
             if (doDependenciesExist)
             {
                 initializeSystem();
+                this.BackgroundImage = new Bitmap(Resources.default_wp);
             }
             else
             {
@@ -68,16 +80,17 @@ namespace QoLUtility
             // - - - Verify
             */
 
-            bool akiServerPath = Directory.Exists(Path.Combine(currentDir, "Aki.Server.exe"));
-            bool akiLauncherPath = Directory.Exists(Path.Combine(currentDir, "Aki.Launcher.exe"));
+            bool akiServerPath = File.Exists(Path.Combine(currentDir, "Aki.Server.exe"));
+            bool akiLauncherPath = File.Exists(Path.Combine(currentDir, "Aki.Launcher.exe"));
+            bool eftLaunchPath = File.Exists(Path.Combine(currentDir, "EscapeFromTarkov.exe"));
             bool EFTData = Directory.Exists(Path.Combine(currentDir, "EscapeFromTarkov_Data"));
 
             string[] akiDB_FullPath = { "Aki_Data", "Server", "database", "templates" };
             string fullPath = string.Join("\\", akiDB_FullPath);
             bool fullPathExists = Directory.Exists(Path.Combine(currentDir, fullPath));
-            bool akiDatabase = File.Exists(Path.Combine(akiDB_FullPath[3], "items.json"));
+            bool akiDatabase = File.Exists(Path.Combine(Path.Combine(currentDir, fullPath), "items.json"));
 
-            if (akiServerPath && akiLauncherPath && EFTData && fullPathExists && akiDatabase)
+            if (akiServerPath && akiLauncherPath && eftLaunchPath && EFTData && fullPathExists && akiDatabase)
             {
                 allExist = true;
             }
@@ -89,7 +102,35 @@ namespace QoLUtility
         {
             clearUI(mainMenu);
             listSystem(selectionMenu, mainMenu);
+            displayWatermark();
 
+        }
+
+        public void displayWatermark()
+        {
+            if (mainMenu != null)
+            {
+                string akiData = Path.Combine(currentDir, "Aki_Data");
+                string akiServer = Path.Combine(akiData, "Server");
+                string akiConfigs = Path.Combine(akiServer, "configs");
+                string akiConfig = Path.Combine(akiConfigs, "core.json");
+                bool coreExists = File.Exists(akiConfig);
+
+                if (coreExists)
+                {
+                    string content = File.ReadAllText(akiConfig);
+                    JavaScriptSerializer coreJson = new JavaScriptSerializer();
+                    var readCore = coreJson.Deserialize<Dictionary<string, object>>(content);
+
+                    var akiVersion = (string)readCore["akiVersion"];
+                    var akiName = (string)readCore["projectName"];
+                    var tarkovVersion = (string)readCore["compatibleTarkovVersion"];
+                    tarkovVersion = tarkovVersion.Remove(0, 2);
+
+                    lblEFT.Text = $"Escape From Tarkov       ({tarkovVersion})";
+                    lblSPTAKI.Text = $"{akiName} {akiVersion}";
+                }
+            }
         }
 
         private void clearUI(Panel control)
@@ -128,7 +169,7 @@ namespace QoLUtility
             path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
             path.CloseAllFigures();
 
-            using (Pen pen = new Pen(Color.FromArgb(255, 100, 100, 100), 1))
+            using (Pen pen = new Pen(Color.White, 1))
             {
                 graphics.DrawPath(pen, path);
             }
@@ -140,23 +181,69 @@ namespace QoLUtility
             for (int i = 0; i < arr.Length; i++)
             {
                 Label lbl = new Label();
-                lbl.Text = arr[i];
-                lbl.AutoSize = false;
-                lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
-                lbl.TextAlign = ContentAlignment.MiddleLeft;
-                lbl.Size = new Size(area.Size.Width - 2, default_item_height);
-                lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
-                lbl.Font = idleFont;
-                lbl.BackColor = idleColor;
-                lbl.ForeColor = Color.Black;
-                lbl.Margin = new Padding(1, 1, 1, 1);
-                lbl.Cursor = Cursors.Hand;
-                lbl.MouseEnter += new EventHandler(lbl_MouseEnter);
-                lbl.MouseLeave += new EventHandler(lbl_MouseLeave);
-                lbl.MouseDown += new MouseEventHandler(lbl_MouseDown);
-                lbl.MouseUp += new MouseEventHandler(lbl_MouseUp);
-                lbl.TextAlign = ContentAlignment.MiddleLeft;
-                lbl.Visible = true;
+
+                if (arr[i].ToLower().Contains("title:"))
+                {
+                    arr[i] = arr[i].Replace("TITLE: ", "");
+
+                    lbl.Text = arr[i];
+
+                    lbl.AutoSize = false;
+                    lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+                    lbl.TextAlign = ContentAlignment.MiddleLeft;
+                    lbl.Size = new Size(area.Size.Width - 2, default_item_height_title);
+                    lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer_title));
+                    lbl.Font = idleFontTitle;
+                    lbl.BackColor = Color.Transparent;
+                    lbl.ForeColor = idleText;
+                    lbl.Margin = new Padding(1, 1, 1, 1);
+                    lbl.Cursor = Cursors.Hand;
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Visible = true;
+                }
+                else if (arr[i].ToLower().Contains("spacer"))
+                {
+                    lbl.AutoSize = false;
+                    lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+                    lbl.TextAlign = ContentAlignment.MiddleLeft;
+                    lbl.Size = new Size(area.Size.Width - 2, default_item_height);
+                    lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
+                    lbl.Font = idleFontTitle;
+                    lbl.BackColor = Color.Transparent;
+                    lbl.ForeColor = idleText;
+                    lbl.Margin = new Padding(1, 1, 1, 1);
+                    lbl.Cursor = Cursors.Hand;
+                    lbl.MouseEnter += new EventHandler(lbl_MouseEnter);
+                    lbl.MouseLeave += new EventHandler(lbl_MouseLeave);
+                    lbl.MouseDown += new MouseEventHandler(lbl_MouseDown);
+                    lbl.MouseUp += new MouseEventHandler(lbl_MouseUp);
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Visible = true;
+
+                    lbl.Text = "";
+                }
+                else
+                {
+                    lbl.Text = arr[i];
+
+                    lbl.AutoSize = false;
+                    lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+                    lbl.TextAlign = ContentAlignment.MiddleLeft;
+                    lbl.Size = new Size(area.Size.Width - 2, default_item_height);
+                    lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
+                    lbl.Font = idleFont;
+                    lbl.BackColor = Color.Transparent;
+                    lbl.ForeColor = idleText;
+                    lbl.Margin = new Padding(1, 1, 1, 1);
+                    lbl.Cursor = Cursors.Hand;
+                    lbl.MouseEnter += new EventHandler(lbl_MouseEnter);
+                    lbl.MouseLeave += new EventHandler(lbl_MouseLeave);
+                    lbl.MouseDown += new MouseEventHandler(lbl_MouseDown);
+                    lbl.MouseUp += new MouseEventHandler(lbl_MouseUp);
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Visible = true;
+                }
+
                 area.Controls.Add(lbl);
             }
         }
@@ -198,13 +285,29 @@ namespace QoLUtility
                         component.ForeColor = idleText;
                     }
                 }
-                lbl.BackColor = hoverColor;
 
-                string activeItem = lbl.Text;
-                activeItem = "> " + activeItem;
-                lbl.Text = activeItem;
+                lbl.BackColor = hoverColor;
                 lbl.ForeColor = selectText;
 
+                if (!lbl.Text.Contains("utility") || !lbl.Text.Contains("spacer") || !lbl.Text.Contains("exit"))
+                {
+                    titleName.Text = lbl.Text;
+                }
+
+                switch (lbl.Text.ToLower())
+                {
+                    case "bots":
+                        titleName.Text = "Bots";
+                        break;
+                    case "traders":
+                        titleName.Text = "Traders";
+                        break;
+                }
+                
+                if (lbl.Text.ToLower() == "exit")
+                {
+                    Application.Exit();
+                }
             }
         }
 
@@ -219,6 +322,46 @@ namespace QoLUtility
         private void mainForm_Resize(object sender, EventArgs e)
         {
             mainMenu.Invalidate();
+        }
+
+        private void botsPanel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            Rectangle rect = new Rectangle(0, 0, botsPanel.Width - 1, botsPanel.Height - 1);
+            int radius = 13;
+
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+            path.CloseAllFigures();
+
+            using (Pen pen = new Pen(Color.White, 1))
+            {
+                graphics.DrawPath(pen, path);
+            }
+        }
+
+        private void titlePanel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            Rectangle rect = new Rectangle(0, 0, titlePanel.Width - 1, titlePanel.Height - 1);
+            int radius = 13;
+
+            GraphicsPath path = new GraphicsPath();
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+            path.CloseAllFigures();
+
+            using (Pen pen = new Pen(Color.FromArgb(255, 138, 177, 240), 2))
+            {
+                graphics.DrawPath(pen, path);
+            }
         }
     }
 }
