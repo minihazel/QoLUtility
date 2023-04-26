@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -100,10 +101,43 @@ namespace QoLUtility
 
         public void initializeSystem()
         {
+            drawObjects(this.Controls);
             clearUI(mainMenu);
             listSystem(selectionMenu, mainMenu);
             displayWatermark();
 
+        }
+
+        public void drawObjects(Control.ControlCollection controls)
+        {
+            foreach (Control control in controls)
+            {
+                if (control is Panel panel)
+                {
+                    if (panel.Name.ToLower() != "flagpanel")
+                    {
+                        panel.Paint += (sender, e) =>
+                        {
+                            Graphics graphics = e.Graphics;
+                            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                            Rectangle rect = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
+                            int radius = 13;
+
+                            GraphicsPath path = new GraphicsPath();
+                            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
+                            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
+                            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
+                            path.CloseAllFigures();
+
+                            using (Pen pen = new Pen(Color.White, 1))
+                            {
+                                graphics.DrawPath(pen, path);
+                            }
+                        };
+                    }
+                }
+            }
         }
 
         public void displayWatermark()
@@ -297,10 +331,19 @@ namespace QoLUtility
                 switch (lbl.Text.ToLower())
                 {
                     case "bots":
-                        titleName.Text = "Bots";
+                        botsPanel.BringToFront();
                         break;
                     case "traders":
-                        titleName.Text = "Traders";
+                        tradersPanel.BringToFront();
+                        break;
+                    case "raids":
+                        raidsPanel.BringToFront();
+                        break;
+                    case "player":
+                        playerPanel.BringToFront();
+                        break;
+                    case "qol":
+                        qolPanel.BringToFront();
                         break;
                 }
                 
@@ -322,46 +365,6 @@ namespace QoLUtility
         private void mainForm_Resize(object sender, EventArgs e)
         {
             mainMenu.Invalidate();
-        }
-
-        private void botsPanel_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics graphics = e.Graphics;
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            Rectangle rect = new Rectangle(0, 0, botsPanel.Width - 1, botsPanel.Height - 1);
-            int radius = 13;
-
-            GraphicsPath path = new GraphicsPath();
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
-            path.CloseAllFigures();
-
-            using (Pen pen = new Pen(Color.White, 1))
-            {
-                graphics.DrawPath(pen, path);
-            }
-        }
-
-        private void titlePanel_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics graphics = e.Graphics;
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            Rectangle rect = new Rectangle(0, 0, titlePanel.Width - 1, titlePanel.Height - 1);
-            int radius = 13;
-
-            GraphicsPath path = new GraphicsPath();
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90);
-            path.CloseAllFigures();
-
-            using (Pen pen = new Pen(Color.FromArgb(255, 138, 177, 240), 2))
-            {
-                graphics.DrawPath(pen, path);
-            }
         }
     }
 }

@@ -32,7 +32,7 @@
             this.lblEFT = new System.Windows.Forms.Label();
             this.lblSPTAKI = new System.Windows.Forms.Label();
             this.mainMenu = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.flagPanel = new System.Windows.Forms.Panel();
             this.botsPanel = new System.Windows.Forms.Panel();
             this.titlePanel = new System.Windows.Forms.Panel();
             this.titleName = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.raidsPanel = new System.Windows.Forms.Panel();
             this.playerPanel = new System.Windows.Forms.Panel();
             this.qolPanel = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.flagPanel.SuspendLayout();
             this.titlePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,18 +73,18 @@
             this.mainMenu.TabIndex = 1;
             this.mainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.mainMenu_Paint);
             // 
-            // panel1
+            // flagPanel
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flagPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.panel1.Controls.Add(this.mainMenu);
-            this.panel1.Controls.Add(this.lblSPTAKI);
-            this.panel1.Controls.Add(this.lblEFT);
-            this.panel1.Location = new System.Drawing.Point(30, -1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 706);
-            this.panel1.TabIndex = 2;
+            this.flagPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.flagPanel.Controls.Add(this.mainMenu);
+            this.flagPanel.Controls.Add(this.lblSPTAKI);
+            this.flagPanel.Controls.Add(this.lblEFT);
+            this.flagPanel.Location = new System.Drawing.Point(30, -1);
+            this.flagPanel.Name = "flagPanel";
+            this.flagPanel.Size = new System.Drawing.Size(320, 706);
+            this.flagPanel.TabIndex = 2;
             // 
             // botsPanel
             // 
@@ -93,7 +93,6 @@
             this.botsPanel.Name = "botsPanel";
             this.botsPanel.Size = new System.Drawing.Size(683, 494);
             this.botsPanel.TabIndex = 3;
-            this.botsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.botsPanel_Paint);
             // 
             // titlePanel
             // 
@@ -101,19 +100,20 @@
             this.titlePanel.Controls.Add(this.titleName);
             this.titlePanel.Location = new System.Drawing.Point(419, 42);
             this.titlePanel.Name = "titlePanel";
-            this.titlePanel.Size = new System.Drawing.Size(218, 48);
+            this.titlePanel.Size = new System.Drawing.Size(175, 48);
             this.titlePanel.TabIndex = 4;
-            this.titlePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.titlePanel_Paint);
             // 
             // titleName
             // 
-            this.titleName.AutoSize = true;
+            this.titleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.titleName.Font = new System.Drawing.Font("Bahnschrift", 22F);
             this.titleName.Location = new System.Drawing.Point(3, 4);
             this.titleName.Name = "titleName";
-            this.titleName.Size = new System.Drawing.Size(198, 36);
+            this.titleName.Size = new System.Drawing.Size(169, 36);
             this.titleName.TabIndex = 2;
-            this.titleName.Text = "SPT-AKI 3.5.5";
+            this.titleName.Text = "N/A";
+            this.titleName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tradersPanel
             // 
@@ -153,13 +153,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ClientSize = new System.Drawing.Size(1157, 705);
+            this.Controls.Add(this.titlePanel);
+            this.Controls.Add(this.botsPanel);
+            this.Controls.Add(this.flagPanel);
             this.Controls.Add(this.qolPanel);
             this.Controls.Add(this.playerPanel);
             this.Controls.Add(this.raidsPanel);
             this.Controls.Add(this.tradersPanel);
-            this.Controls.Add(this.titlePanel);
-            this.Controls.Add(this.botsPanel);
-            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Bahnschrift Light", 11F);
             this.ForeColor = System.Drawing.Color.LightGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -170,10 +170,9 @@
             this.Text = "QoL Utility";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.flagPanel.ResumeLayout(false);
+            this.flagPanel.PerformLayout();
             this.titlePanel.ResumeLayout(false);
-            this.titlePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -182,7 +181,7 @@
         private System.Windows.Forms.Label lblEFT;
         private System.Windows.Forms.Label lblSPTAKI;
         private System.Windows.Forms.Panel mainMenu;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel flagPanel;
         private System.Windows.Forms.Panel botsPanel;
         private System.Windows.Forms.Panel titlePanel;
         private System.Windows.Forms.Label titleName;
