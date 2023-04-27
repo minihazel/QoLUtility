@@ -34,21 +34,25 @@ namespace QoLUtility
         public Color hoverColor = Color.FromArgb(255, 32, 32, 32);
         public Color selectColor = Color.FromArgb(255, 35, 35, 35);
         public Color selectText = Color.DodgerBlue;
+        public Color criticalText = Color.IndianRed;
 
         public Font idleFont = new Font("Bahnschrift Light", 11, FontStyle.Regular);
         public Font idleFontTitle = new Font("Bahnschrift Light", 15, FontStyle.Regular);
+        public Font idleFontSpacer = new Font("Bahnschrift Light", 10, FontStyle.Regular);
         /*         LIST SYSTEM         */
 
         public string[] selectionMenu =
         {
-            "TITLE: QoL Utility  |  Main Menu",
-            "SPACER",
-            "Bots",
+            "TITLE: Raccoon's Essentials",
+            "-",
+            "Player",
             "Traders",
             "Raids",
-            "Player",
+            "Bots",
             "QoL",
-            "Exit"
+            "Exit",
+            "spacer",
+            "Information",
         };
 
         public mainForm()
@@ -105,7 +109,6 @@ namespace QoLUtility
             clearUI(mainMenu);
             listSystem(selectionMenu, mainMenu);
             displayWatermark();
-
         }
 
         public void drawObjects(Control.ControlCollection controls)
@@ -116,12 +119,14 @@ namespace QoLUtility
                 {
                     if (panel.Name.ToLower() != "flagpanel")
                     {
+                        panel.BackColor = Color.Transparent;
+
                         panel.Paint += (sender, e) =>
                         {
+                            int radius = 25;
                             Graphics graphics = e.Graphics;
                             graphics.SmoothingMode = SmoothingMode.AntiAlias;
                             Rectangle rect = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
-                            int radius = 13;
 
                             GraphicsPath path = new GraphicsPath();
                             path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
@@ -215,8 +220,9 @@ namespace QoLUtility
             for (int i = 0; i < arr.Length; i++)
             {
                 Label lbl = new Label();
+                string _item = arr[i].ToLower();
 
-                if (arr[i].ToLower().Contains("title:"))
+                if (_item.Contains("title:"))
                 {
                     arr[i] = arr[i].Replace("TITLE: ", "");
 
@@ -231,11 +237,10 @@ namespace QoLUtility
                     lbl.BackColor = Color.Transparent;
                     lbl.ForeColor = idleText;
                     lbl.Margin = new Padding(1, 1, 1, 1);
-                    lbl.Cursor = Cursors.Hand;
                     lbl.TextAlign = ContentAlignment.MiddleCenter;
                     lbl.Visible = true;
                 }
-                else if (arr[i].ToLower().Contains("spacer"))
+                else if (_item.Contains("spacer"))
                 {
                     lbl.AutoSize = false;
                     lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
@@ -246,6 +251,41 @@ namespace QoLUtility
                     lbl.BackColor = Color.Transparent;
                     lbl.ForeColor = idleText;
                     lbl.Margin = new Padding(1, 1, 1, 1);
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Visible = true;
+
+                    lbl.Text = "";
+                }
+                else if (_item.Contains("-"))
+                {
+                    // lbl.Text = "——————————————";
+                    lbl.Text = "════════════════════════════════════════════════";
+
+                    lbl.AutoSize = false;
+                    lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+                    lbl.TextAlign = ContentAlignment.MiddleLeft;
+                    lbl.Size = new Size(area.Size.Width - 2, default_item_height);
+                    lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
+                    lbl.Font = idleFontSpacer;
+                    lbl.BackColor = Color.Transparent;
+                    lbl.ForeColor = idleText;
+                    lbl.Margin = new Padding(1, 1, 1, 1);
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Visible = true;
+                }
+                else if (_item.Contains("exit"))
+                {
+                    lbl.Text = arr[i];
+
+                    lbl.AutoSize = false;
+                    lbl.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right);
+                    lbl.TextAlign = ContentAlignment.MiddleLeft;
+                    lbl.Size = new Size(area.Size.Width - 2, default_item_height);
+                    lbl.Location = new Point(default_item_loc_x, default_item_loc_y + (i * default_item_spacer));
+                    lbl.Font = idleFont;
+                    lbl.BackColor = Color.Transparent;
+                    lbl.ForeColor = criticalText;
+                    lbl.Margin = new Padding(1, 1, 1, 1);
                     lbl.Cursor = Cursors.Hand;
                     lbl.MouseEnter += new EventHandler(lbl_MouseEnter);
                     lbl.MouseLeave += new EventHandler(lbl_MouseLeave);
@@ -253,8 +293,6 @@ namespace QoLUtility
                     lbl.MouseUp += new MouseEventHandler(lbl_MouseUp);
                     lbl.TextAlign = ContentAlignment.MiddleCenter;
                     lbl.Visible = true;
-
-                    lbl.Text = "";
                 }
                 else
                 {
@@ -307,16 +345,18 @@ namespace QoLUtility
             {
                 foreach (Control component in mainMenu.Controls)
                 {
-                    if (component.Text.Contains("> "))
-                    {
-                        //component.Text = component.Text.Remove(0, 2);
-                        component.Text = component.Text.Replace("> ", "");
-                    }
-
                     if (component is Label && component.Text != lbl.Text)
                     {
-                        component.BackColor = idleColor;
-                        component.ForeColor = idleText;
+                        if (component.Text.ToLower().Contains("exit"))
+                        {
+                            component.BackColor = idleColor;
+                            component.ForeColor = criticalText;
+                        }
+                        else
+                        {
+                            component.BackColor = idleColor;
+                            component.ForeColor = idleText;
+                        }
                     }
                 }
 
@@ -344,6 +384,9 @@ namespace QoLUtility
                         break;
                     case "qol":
                         qolPanel.BringToFront();
+                        break;
+                    case "information":
+                        welcomePanel.BringToFront();
                         break;
                 }
                 
