@@ -18,7 +18,7 @@ namespace QoLUtility
 {
     public partial class mainForm : Form
     {
-        public string currentDir = "F:\\SPT Iterations\\SPT 3.5.2";
+        public string currentDir = "C:\\SPT 3.5.5";
 
         /*         LIST SYSTEM         */
         int default_item_height = 35; // item height
@@ -296,6 +296,7 @@ namespace QoLUtility
                 }
                 else
                 {
+                    lbl.Name = $"menuItem_{arr[i].ToLower()}";
                     lbl.Text = arr[i];
 
                     lbl.AutoSize = false;
@@ -408,6 +409,91 @@ namespace QoLUtility
         private void mainForm_Resize(object sender, EventArgs e)
         {
             mainMenu.Invalidate();
+        }
+
+        private void infoComponentPlayer_Click(object sender, EventArgs e)
+        {
+            foreach (Control component in mainMenu.Controls)
+            {
+                if (component is Label)
+                {
+                    if (component.Text.ToLower() == infoComponentPlayer.Text.ToLower())
+                    {
+                        component.ForeColor = selectText;
+                    }
+                }
+            }
+            lbl_MouseDown(sender, e);
+            infoComponentPlayer.BackColor = Color.Transparent;
+            infoComponentPlayer.ForeColor = idleText;
+        }
+
+        private void infoComponentTraders_Click(object sender, EventArgs e)
+        {
+            foreach (Control component in mainMenu.Controls)
+            {
+                if (component is Label)
+                {
+                    if (component.Text.ToLower() == infoComponentTraders.Text.ToLower())
+                    {
+                        component.ForeColor = selectText;
+                    }
+                }
+            }
+            lbl_MouseDown(sender, e);
+            infoComponentTraders.BackColor = Color.Transparent;
+            infoComponentTraders.ForeColor = idleText;
+        }
+
+        private void infoComponentRaids_Click(object sender, EventArgs e)
+        {
+            foreach (Control component in mainMenu.Controls)
+            {
+                if (component is Label)
+                {
+                    if (component.Text.ToLower() == infoComponentRaids.Text.ToLower())
+                    {
+                        component.ForeColor = selectText;
+                    }
+                }
+            }
+            lbl_MouseDown(sender, e);
+            infoComponentRaids.BackColor = Color.Transparent;
+            infoComponentRaids.ForeColor = idleText;
+        }
+
+        private void infoComponentBots_Click(object sender, EventArgs e)
+        {
+            foreach (Control component in mainMenu.Controls)
+            {
+                if (component is Label)
+                {
+                    if (component.Text.ToLower() == infoComponentBots.Text.ToLower())
+                    {
+                        component.ForeColor = selectText;
+                    }
+                }
+            }
+            lbl_MouseDown(sender, e);
+            infoComponentBots.BackColor = Color.Transparent;
+            infoComponentBots.ForeColor = idleText;
+        }
+
+        private void infoComponentQoL_Click(object sender, EventArgs e)
+        {
+            foreach (Control component in mainMenu.Controls)
+            {
+                if (component is Label)
+                {
+                    if (component.Text.ToLower() == infoComponentQoL.Text.ToLower())
+                    {
+                        component.ForeColor = selectText;
+                    }
+                }
+            }
+            lbl_MouseDown(sender, e);
+            infoComponentQoL.BackColor = Color.Transparent;
+            infoComponentQoL.ForeColor = idleText;
         }
     }
 }

@@ -45,12 +45,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.infoComponentQoL = new System.Windows.Forms.Label();
+            this.infoComponentBots = new System.Windows.Forms.Label();
             this.spacerPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.infoComponentRaids = new System.Windows.Forms.Label();
+            this.infoComponentTraders = new System.Windows.Forms.Label();
+            this.infoComponentPlayer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flagPanel.SuspendLayout();
             this.welcomePanel.SuspendLayout();
@@ -159,12 +159,12 @@
             this.welcomePanel.Controls.Add(this.label9);
             this.welcomePanel.Controls.Add(this.label8);
             this.welcomePanel.Controls.Add(this.label7);
-            this.welcomePanel.Controls.Add(this.label6);
-            this.welcomePanel.Controls.Add(this.label5);
+            this.welcomePanel.Controls.Add(this.infoComponentQoL);
+            this.welcomePanel.Controls.Add(this.infoComponentBots);
             this.welcomePanel.Controls.Add(this.spacerPanel);
-            this.welcomePanel.Controls.Add(this.label4);
-            this.welcomePanel.Controls.Add(this.label3);
-            this.welcomePanel.Controls.Add(this.label2);
+            this.welcomePanel.Controls.Add(this.infoComponentRaids);
+            this.welcomePanel.Controls.Add(this.infoComponentTraders);
+            this.welcomePanel.Controls.Add(this.infoComponentPlayer);
             this.welcomePanel.Controls.Add(this.label1);
             this.welcomePanel.Location = new System.Drawing.Point(419, 105);
             this.welcomePanel.Name = "welcomePanel";
@@ -226,27 +226,29 @@
             this.label7.Text = "Player related information and profile stats";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // infoComponentQoL
             // 
-            this.label6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label6.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
-            this.label6.Location = new System.Drawing.Point(3, 288);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(228, 19);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Quality of Life";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentQoL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoComponentQoL.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
+            this.infoComponentQoL.Location = new System.Drawing.Point(3, 288);
+            this.infoComponentQoL.Name = "infoComponentQoL";
+            this.infoComponentQoL.Size = new System.Drawing.Size(218, 19);
+            this.infoComponentQoL.TabIndex = 6;
+            this.infoComponentQoL.Text = "QoL";
+            this.infoComponentQoL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentQoL.Click += new System.EventHandler(this.infoComponentQoL_Click);
             // 
-            // label5
+            // infoComponentBots
             // 
-            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label5.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
-            this.label5.Location = new System.Drawing.Point(3, 257);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(228, 19);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Bots";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentBots.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoComponentBots.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
+            this.infoComponentBots.Location = new System.Drawing.Point(3, 257);
+            this.infoComponentBots.Name = "infoComponentBots";
+            this.infoComponentBots.Size = new System.Drawing.Size(218, 19);
+            this.infoComponentBots.TabIndex = 5;
+            this.infoComponentBots.Text = "Bots";
+            this.infoComponentBots.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentBots.Click += new System.EventHandler(this.infoComponentBots_Click);
             // 
             // spacerPanel
             // 
@@ -256,38 +258,41 @@
             this.spacerPanel.TabIndex = 4;
             this.spacerPanel.Visible = false;
             // 
-            // label4
+            // infoComponentRaids
             // 
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
-            this.label4.Location = new System.Drawing.Point(3, 226);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(228, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Raids";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentRaids.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoComponentRaids.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
+            this.infoComponentRaids.Location = new System.Drawing.Point(3, 226);
+            this.infoComponentRaids.Name = "infoComponentRaids";
+            this.infoComponentRaids.Size = new System.Drawing.Size(218, 19);
+            this.infoComponentRaids.TabIndex = 3;
+            this.infoComponentRaids.Text = "Raids";
+            this.infoComponentRaids.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentRaids.Click += new System.EventHandler(this.infoComponentRaids_Click);
             // 
-            // label3
+            // infoComponentTraders
             // 
-            this.label3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
-            this.label3.Location = new System.Drawing.Point(3, 195);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(228, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Traders";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentTraders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoComponentTraders.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
+            this.infoComponentTraders.Location = new System.Drawing.Point(3, 195);
+            this.infoComponentTraders.Name = "infoComponentTraders";
+            this.infoComponentTraders.Size = new System.Drawing.Size(218, 19);
+            this.infoComponentTraders.TabIndex = 2;
+            this.infoComponentTraders.Text = "Traders";
+            this.infoComponentTraders.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentTraders.Click += new System.EventHandler(this.infoComponentTraders_Click);
             // 
-            // label2
+            // infoComponentPlayer
             // 
-            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
-            this.label2.Location = new System.Drawing.Point(3, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(228, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Player";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentPlayer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.infoComponentPlayer.Font = new System.Drawing.Font("Bahnschrift Light", 12F, System.Drawing.FontStyle.Underline);
+            this.infoComponentPlayer.Location = new System.Drawing.Point(3, 164);
+            this.infoComponentPlayer.Name = "infoComponentPlayer";
+            this.infoComponentPlayer.Size = new System.Drawing.Size(218, 19);
+            this.infoComponentPlayer.TabIndex = 1;
+            this.infoComponentPlayer.Text = "Player";
+            this.infoComponentPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.infoComponentPlayer.Click += new System.EventHandler(this.infoComponentPlayer_Click);
             // 
             // label1
             // 
@@ -346,12 +351,12 @@
         private System.Windows.Forms.Panel qolPanel;
         private System.Windows.Forms.Panel welcomePanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label infoComponentRaids;
+        private System.Windows.Forms.Label infoComponentTraders;
+        private System.Windows.Forms.Label infoComponentPlayer;
         private System.Windows.Forms.Panel spacerPanel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label infoComponentBots;
+        private System.Windows.Forms.Label infoComponentQoL;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
