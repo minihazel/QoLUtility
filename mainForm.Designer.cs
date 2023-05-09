@@ -52,7 +52,10 @@
             this.infoComponentTraders = new System.Windows.Forms.Label();
             this.infoComponentPlayer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.flagPanel.SuspendLayout();
+            this.playerPanel.SuspendLayout();
             this.welcomePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,9 +75,9 @@
             this.lblSPTAKI.Font = new System.Drawing.Font("Bahnschrift", 30F);
             this.lblSPTAKI.Location = new System.Drawing.Point(3, 631);
             this.lblSPTAKI.Name = "lblSPTAKI";
-            this.lblSPTAKI.Size = new System.Drawing.Size(266, 48);
+            this.lblSPTAKI.Size = new System.Drawing.Size(172, 48);
             this.lblSPTAKI.TabIndex = 1;
-            this.lblSPTAKI.Text = "SPT-AKI 3.5.5";
+            this.lblSPTAKI.Text = "SPT-AKI";
             // 
             // mainMenu
             // 
@@ -138,6 +141,8 @@
             // playerPanel
             // 
             this.playerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerPanel.Controls.Add(this.comboBox1);
+            this.playerPanel.Controls.Add(this.label2);
             this.playerPanel.Location = new System.Drawing.Point(419, 105);
             this.playerPanel.Name = "playerPanel";
             this.playerPanel.Size = new System.Drawing.Size(683, 494);
@@ -305,6 +310,26 @@
     "essential.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Select profile:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(117, 6);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(319, 26);
+            this.comboBox1.TabIndex = 1;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -313,12 +338,12 @@
             this.ClientSize = new System.Drawing.Size(1157, 705);
             this.Controls.Add(this.titleName);
             this.Controls.Add(this.flagPanel);
-            this.Controls.Add(this.welcomePanel);
-            this.Controls.Add(this.botsPanel);
-            this.Controls.Add(this.qolPanel);
             this.Controls.Add(this.playerPanel);
             this.Controls.Add(this.raidsPanel);
             this.Controls.Add(this.tradersPanel);
+            this.Controls.Add(this.welcomePanel);
+            this.Controls.Add(this.botsPanel);
+            this.Controls.Add(this.qolPanel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Bahnschrift Light", 11F);
             this.ForeColor = System.Drawing.Color.LightGray;
@@ -332,6 +357,8 @@
             this.Resize += new System.EventHandler(this.mainForm_Resize);
             this.flagPanel.ResumeLayout(false);
             this.flagPanel.PerformLayout();
+            this.playerPanel.ResumeLayout(false);
+            this.playerPanel.PerformLayout();
             this.welcomePanel.ResumeLayout(false);
             this.welcomePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -362,6 +389,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
