@@ -38,6 +38,8 @@
             this.tradersPanel = new System.Windows.Forms.Panel();
             this.raidsPanel = new System.Windows.Forms.Panel();
             this.playerPanel = new System.Windows.Forms.Panel();
+            this.playerList = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.qolPanel = new System.Windows.Forms.Panel();
             this.welcomePanel = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -52,11 +54,19 @@
             this.infoComponentTraders = new System.Windows.Forms.Label();
             this.infoComponentPlayer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.playerHealthPanel = new System.Windows.Forms.GroupBox();
+            this.playerInventoryPanel = new System.Windows.Forms.GroupBox();
+            this.playerHealthHead = new System.Windows.Forms.TextBox();
+            this.playerHealthChest = new System.Windows.Forms.TextBox();
+            this.playerHealthTorso = new System.Windows.Forms.TextBox();
+            this.playerHealthLeftArm = new System.Windows.Forms.TextBox();
+            this.playerHealthRightArm = new System.Windows.Forms.TextBox();
+            this.playerHealthRightLeg = new System.Windows.Forms.TextBox();
+            this.playerHealthLeftLeg = new System.Windows.Forms.TextBox();
             this.flagPanel.SuspendLayout();
             this.playerPanel.SuspendLayout();
             this.welcomePanel.SuspendLayout();
+            this.playerHealthPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblEFT
@@ -141,12 +151,36 @@
             // playerPanel
             // 
             this.playerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.playerPanel.Controls.Add(this.comboBox1);
+            this.playerPanel.Controls.Add(this.playerInventoryPanel);
+            this.playerPanel.Controls.Add(this.playerHealthPanel);
+            this.playerPanel.Controls.Add(this.playerList);
             this.playerPanel.Controls.Add(this.label2);
             this.playerPanel.Location = new System.Drawing.Point(419, 105);
             this.playerPanel.Name = "playerPanel";
             this.playerPanel.Size = new System.Drawing.Size(683, 494);
             this.playerPanel.TabIndex = 6;
+            // 
+            // playerList
+            // 
+            this.playerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playerList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.playerList.FormattingEnabled = true;
+            this.playerList.Location = new System.Drawing.Point(239, 13);
+            this.playerList.Name = "playerList";
+            this.playerList.Size = new System.Drawing.Size(319, 26);
+            this.playerList.TabIndex = 1;
+            this.playerList.SelectedIndexChanged += new System.EventHandler(this.playerList_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(125, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Select profile:";
             // 
             // qolPanel
             // 
@@ -310,25 +344,125 @@
     "essential.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // playerHealthPanel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 18);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Select profile:";
+            this.playerHealthPanel.Controls.Add(this.playerHealthRightLeg);
+            this.playerHealthPanel.Controls.Add(this.playerHealthLeftLeg);
+            this.playerHealthPanel.Controls.Add(this.playerHealthRightArm);
+            this.playerHealthPanel.Controls.Add(this.playerHealthLeftArm);
+            this.playerHealthPanel.Controls.Add(this.playerHealthTorso);
+            this.playerHealthPanel.Controls.Add(this.playerHealthChest);
+            this.playerHealthPanel.Controls.Add(this.playerHealthHead);
+            this.playerHealthPanel.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthPanel.Location = new System.Drawing.Point(34, 61);
+            this.playerHealthPanel.Name = "playerHealthPanel";
+            this.playerHealthPanel.Size = new System.Drawing.Size(300, 300);
+            this.playerHealthPanel.TabIndex = 2;
+            this.playerHealthPanel.TabStop = false;
+            this.playerHealthPanel.Text = "Player health";
+            this.playerHealthPanel.Visible = false;
             // 
-            // comboBox1
+            // playerInventoryPanel
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(117, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(319, 26);
-            this.comboBox1.TabIndex = 1;
+            this.playerInventoryPanel.ForeColor = System.Drawing.Color.LightGray;
+            this.playerInventoryPanel.Location = new System.Drawing.Point(349, 61);
+            this.playerInventoryPanel.Name = "playerInventoryPanel";
+            this.playerInventoryPanel.Size = new System.Drawing.Size(300, 300);
+            this.playerInventoryPanel.TabIndex = 3;
+            this.playerInventoryPanel.TabStop = false;
+            this.playerInventoryPanel.Text = "Player inventory";
+            this.playerInventoryPanel.Visible = false;
+            // 
+            // playerHealthHead
+            // 
+            this.playerHealthHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthHead.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthHead.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthHead.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthHead.Location = new System.Drawing.Point(115, 40);
+            this.playerHealthHead.Name = "playerHealthHead";
+            this.playerHealthHead.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthHead.TabIndex = 0;
+            this.playerHealthHead.Text = "0";
+            this.playerHealthHead.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthChest
+            // 
+            this.playerHealthChest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthChest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthChest.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthChest.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthChest.Location = new System.Drawing.Point(115, 132);
+            this.playerHealthChest.Name = "playerHealthChest";
+            this.playerHealthChest.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthChest.TabIndex = 1;
+            this.playerHealthChest.Text = "0";
+            this.playerHealthChest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthTorso
+            // 
+            this.playerHealthTorso.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthTorso.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthTorso.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthTorso.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthTorso.Location = new System.Drawing.Point(115, 168);
+            this.playerHealthTorso.Name = "playerHealthTorso";
+            this.playerHealthTorso.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthTorso.TabIndex = 2;
+            this.playerHealthTorso.Text = "0";
+            this.playerHealthTorso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthLeftArm
+            // 
+            this.playerHealthLeftArm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthLeftArm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthLeftArm.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthLeftArm.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthLeftArm.Location = new System.Drawing.Point(30, 90);
+            this.playerHealthLeftArm.Name = "playerHealthLeftArm";
+            this.playerHealthLeftArm.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthLeftArm.TabIndex = 3;
+            this.playerHealthLeftArm.Text = "0";
+            this.playerHealthLeftArm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthRightArm
+            // 
+            this.playerHealthRightArm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthRightArm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthRightArm.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthRightArm.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthRightArm.Location = new System.Drawing.Point(200, 90);
+            this.playerHealthRightArm.Name = "playerHealthRightArm";
+            this.playerHealthRightArm.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthRightArm.TabIndex = 4;
+            this.playerHealthRightArm.Text = "0";
+            this.playerHealthRightArm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthRightLeg
+            // 
+            this.playerHealthRightLeg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthRightLeg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthRightLeg.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthRightLeg.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthRightLeg.Location = new System.Drawing.Point(200, 231);
+            this.playerHealthRightLeg.Name = "playerHealthRightLeg";
+            this.playerHealthRightLeg.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthRightLeg.TabIndex = 6;
+            this.playerHealthRightLeg.Text = "0";
+            this.playerHealthRightLeg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // playerHealthLeftLeg
+            // 
+            this.playerHealthLeftLeg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerHealthLeftLeg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.playerHealthLeftLeg.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerHealthLeftLeg.ForeColor = System.Drawing.Color.LightGray;
+            this.playerHealthLeftLeg.Location = new System.Drawing.Point(30, 231);
+            this.playerHealthLeftLeg.Name = "playerHealthLeftLeg";
+            this.playerHealthLeftLeg.Size = new System.Drawing.Size(70, 30);
+            this.playerHealthLeftLeg.TabIndex = 5;
+            this.playerHealthLeftLeg.Text = "0";
+            this.playerHealthLeftLeg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mainForm
             // 
@@ -361,6 +495,8 @@
             this.playerPanel.PerformLayout();
             this.welcomePanel.ResumeLayout(false);
             this.welcomePanel.PerformLayout();
+            this.playerHealthPanel.ResumeLayout(false);
+            this.playerHealthPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,7 +526,16 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox playerList;
+        private System.Windows.Forms.GroupBox playerHealthPanel;
+        private System.Windows.Forms.GroupBox playerInventoryPanel;
+        private System.Windows.Forms.TextBox playerHealthHead;
+        private System.Windows.Forms.TextBox playerHealthRightArm;
+        private System.Windows.Forms.TextBox playerHealthLeftArm;
+        private System.Windows.Forms.TextBox playerHealthTorso;
+        private System.Windows.Forms.TextBox playerHealthChest;
+        private System.Windows.Forms.TextBox playerHealthRightLeg;
+        private System.Windows.Forms.TextBox playerHealthLeftLeg;
     }
 }
 

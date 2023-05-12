@@ -109,6 +109,7 @@ namespace QoLUtility
             clearUI(mainMenu);
             listSystem(selectionMenu, mainMenu);
             displayWatermark();
+            welcomePanel.BringToFront();
         }
 
         public void drawObjects(Control.ControlCollection controls)
@@ -382,6 +383,7 @@ namespace QoLUtility
                         break;
                     case "player":
                         playerPanel.BringToFront();
+                        initializePlayerSystem();
                         break;
                     case "qol":
                         qolPanel.BringToFront();
@@ -494,6 +496,95 @@ namespace QoLUtility
             lbl_MouseDown(sender, e);
             infoComponentQoL.BackColor = Color.Transparent;
             infoComponentQoL.ForeColor = idleText;
+        }
+
+        public void initializePlayerSystem()
+        {
+            /*
+            playerList.Items.Clear();
+            foreach (Control component in playerList.Controls)
+            {
+                if (component is GroupBox)
+                {
+                    component.Visible = false;
+
+                    foreach (Control inComponent in component.Controls)
+                    {
+                        if (inComponent is TextBox tbx)
+                        {
+                            tbx.Text = "";
+                        }
+                        else if (inComponent is ListBox lbx)
+                        {
+                            lbx.Items.Clear();
+                        }
+                    }
+                }
+            }
+            */
+
+            listProfiles();
+        }
+
+        public void listProfiles()
+        {
+            string userFolder = Path.Combine(currentDir, "user");
+            string profilesFolder = Path.Combine(userFolder, "profiles");
+
+            bool userFolderExists = Directory.Exists(userFolder);
+            if (userFolderExists)
+            {
+                bool profilesFolderExists = Directory.Exists(profilesFolder);
+                if (profilesFolderExists)
+                {
+                    foreach (string profile in Directory.GetFiles(profilesFolder))
+                    {
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        // var _profile = serializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(profile));
+                        dynamic _profile = serializer.Deserialize<dynamic>(File.ReadAllText(profile));
+
+                        string nickname = _profile["characters"]["pmc"]["Info"]["Nickname"];
+                        playerList.Items.Add(nickname);
+
+                        /*
+                        if (profileObject != null)
+                        {
+                            var characters = (Dictionary<string, object>)profileObject["characters"];
+                            var pmc = (Dictionary<string, object>)characters["pmc"];
+                            var Info = (Dictionary<string, object>)pmc["Info"];
+
+                            var info = (Dictionary<string, object>)profileObject["info"];
+                            Debug.WriteLine(info);
+                        }
+                        */
+
+                        /*
+                        var characters = profileObject["characters"] as Dictionary<string, object>;
+                        if (characters != null)
+                        {
+                            var pmc = characters["pmc"] as Dictionary<string, object>;
+                            if (pmc != null)
+                            {
+                                var InfoObject = pmc["Info"] as Dictionary<string, object>;
+                                if (InfoObject != null)
+                                {
+
+                                }
+                            }
+                        }
+                        */
+                    }
+                }
+            }
+        }
+
+        private void playerList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (playerList.SelectedIndex > -1)
+            {
+                playerHealthPanel.Visible = true;
+                playerInventoryPanel.Visible = true;
+            }
         }
     }
 }
