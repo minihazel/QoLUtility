@@ -18,7 +18,7 @@ namespace QoLUtility
 {
     public partial class mainForm : Form
     {
-        public string currentDir = "C:\\SPT 3.5.5";
+        public string currentDir = "F:\\SPT Iterations\\SPT 3.5.5";
 
         /*         LIST SYSTEM         */
         int default_item_height = 35; // item height
@@ -120,8 +120,9 @@ namespace QoLUtility
                 {
                     if (panel.Name.ToLower() != "flagpanel")
                     {
-                        panel.BackColor = Color.Transparent;
+                        // panel.BackColor = Color.Transparent;
 
+                        /*
                         panel.Paint += (sender, e) =>
                         {
                             int radius = 25;
@@ -141,6 +142,7 @@ namespace QoLUtility
                                 graphics.DrawPath(pen, path);
                             }
                         };
+                        */
                     }
                 }
             }
@@ -540,39 +542,10 @@ namespace QoLUtility
                     foreach (string profile in Directory.GetFiles(profilesFolder))
                     {
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
-                        // var _profile = serializer.Deserialize<Dictionary<string, object>>(File.ReadAllText(profile));
                         dynamic _profile = serializer.Deserialize<dynamic>(File.ReadAllText(profile));
 
                         string nickname = _profile["characters"]["pmc"]["Info"]["Nickname"];
                         playerList.Items.Add(nickname);
-
-                        /*
-                        if (profileObject != null)
-                        {
-                            var characters = (Dictionary<string, object>)profileObject["characters"];
-                            var pmc = (Dictionary<string, object>)characters["pmc"];
-                            var Info = (Dictionary<string, object>)pmc["Info"];
-
-                            var info = (Dictionary<string, object>)profileObject["info"];
-                            Debug.WriteLine(info);
-                        }
-                        */
-
-                        /*
-                        var characters = profileObject["characters"] as Dictionary<string, object>;
-                        if (characters != null)
-                        {
-                            var pmc = characters["pmc"] as Dictionary<string, object>;
-                            if (pmc != null)
-                            {
-                                var InfoObject = pmc["Info"] as Dictionary<string, object>;
-                                if (InfoObject != null)
-                                {
-
-                                }
-                            }
-                        }
-                        */
                     }
                 }
             }
@@ -582,9 +555,25 @@ namespace QoLUtility
         {
             if (playerList.SelectedIndex > -1)
             {
-                playerHealthPanel.Visible = true;
+                playerTabHealth.Visible = true;
+                playerTabInfo.Visible = true;
+
+                playerHealthBox.Visible = true;
                 playerInventoryPanel.Visible = true;
+                playerLevelingPanel.Visible = true;
+
+                playerInfoPanel.BringToFront();
             }
+        }
+
+        private void playerTabInfo_Click(object sender, EventArgs e)
+        {
+            playerInfoPanel.BringToFront();
+        }
+
+        private void playerTabHealth_Click(object sender, EventArgs e)
+        {
+            playerHealthPanel.BringToFront();
         }
     }
 }
