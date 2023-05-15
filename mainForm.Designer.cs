@@ -38,7 +38,24 @@
             this.tradersPanel = new System.Windows.Forms.Panel();
             this.raidsPanel = new System.Windows.Forms.Panel();
             this.playerPanel = new System.Windows.Forms.Panel();
+            this.playerTabHealth = new System.Windows.Forms.Button();
+            this.playerTabInfo = new System.Windows.Forms.Button();
+            this.playerList = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.playerInfoPanel = new System.Windows.Forms.Panel();
+            this.playerLevelingPanel = new System.Windows.Forms.GroupBox();
+            this.playerLevelhover = new System.Windows.Forms.Label();
+            this.playerLevel = new System.Windows.Forms.TextBox();
+            this.playerExphover = new System.Windows.Forms.Label();
+            this.playerExp = new System.Windows.Forms.TextBox();
             this.playerInventoryPanel = new System.Windows.Forms.GroupBox();
+            this.playerFactionhover = new System.Windows.Forms.Label();
+            this.playerAIDhover = new System.Windows.Forms.Label();
+            this.playerFaction = new System.Windows.Forms.TextBox();
+            this.playerAID = new System.Windows.Forms.TextBox();
+            this.playerUserhover = new System.Windows.Forms.Label();
+            this.playerUser = new System.Windows.Forms.TextBox();
+            this.playerHealthPanel = new System.Windows.Forms.Panel();
             this.playerHealthBox = new System.Windows.Forms.GroupBox();
             this.playerHealthRightLeg = new System.Windows.Forms.TextBox();
             this.playerHealthLeftLeg = new System.Windows.Forms.TextBox();
@@ -47,8 +64,6 @@
             this.playerHealthTorso = new System.Windows.Forms.TextBox();
             this.playerHealthChest = new System.Windows.Forms.TextBox();
             this.playerHealthHead = new System.Windows.Forms.TextBox();
-            this.playerList = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.qolPanel = new System.Windows.Forms.Panel();
             this.welcomePanel = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,29 +78,29 @@
             this.infoComponentTraders = new System.Windows.Forms.Label();
             this.infoComponentPlayer = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.playerAID = new System.Windows.Forms.TextBox();
-            this.playerUser = new System.Windows.Forms.TextBox();
-            this.playerAIDhover = new System.Windows.Forms.Label();
-            this.playerUserhover = new System.Windows.Forms.Label();
-            this.playerFactionhover = new System.Windows.Forms.Label();
-            this.playerFaction = new System.Windows.Forms.TextBox();
-            this.playerInfoPanel = new System.Windows.Forms.Panel();
-            this.playerLevelingPanel = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.playerHealthPanel = new System.Windows.Forms.Panel();
-            this.playerTabInfo = new System.Windows.Forms.Button();
-            this.playerTabHealth = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.playerAccountPanel = new System.Windows.Forms.GroupBox();
+            this.launcherUserhover = new System.Windows.Forms.Label();
+            this.launcherUser = new System.Windows.Forms.TextBox();
+            this.launcherPwhover = new System.Windows.Forms.Label();
+            this.launcherPw = new System.Windows.Forms.TextBox();
+            this.playerGVhover = new System.Windows.Forms.Label();
+            this.playerGV = new System.Windows.Forms.TextBox();
             this.flagPanel.SuspendLayout();
             this.playerPanel.SuspendLayout();
-            this.playerInventoryPanel.SuspendLayout();
-            this.playerHealthBox.SuspendLayout();
-            this.welcomePanel.SuspendLayout();
             this.playerInfoPanel.SuspendLayout();
             this.playerLevelingPanel.SuspendLayout();
+            this.playerInventoryPanel.SuspendLayout();
             this.playerHealthPanel.SuspendLayout();
+            this.playerHealthBox.SuspendLayout();
+            this.welcomePanel.SuspendLayout();
+            this.playerAccountPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblEFT
@@ -185,8 +200,127 @@
             this.playerPanel.Size = new System.Drawing.Size(683, 494);
             this.playerPanel.TabIndex = 6;
             // 
+            // playerTabHealth
+            // 
+            this.playerTabHealth.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playerTabHealth.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.playerTabHealth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playerTabHealth.Location = new System.Drawing.Point(166, 62);
+            this.playerTabHealth.Name = "playerTabHealth";
+            this.playerTabHealth.Size = new System.Drawing.Size(149, 35);
+            this.playerTabHealth.TabIndex = 5;
+            this.playerTabHealth.Text = "Health";
+            this.playerTabHealth.UseVisualStyleBackColor = true;
+            this.playerTabHealth.Visible = false;
+            this.playerTabHealth.Click += new System.EventHandler(this.playerTabHealth_Click);
+            // 
+            // playerTabInfo
+            // 
+            this.playerTabInfo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playerTabInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.playerTabInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playerTabInfo.Location = new System.Drawing.Point(11, 62);
+            this.playerTabInfo.Name = "playerTabInfo";
+            this.playerTabInfo.Size = new System.Drawing.Size(149, 35);
+            this.playerTabInfo.TabIndex = 4;
+            this.playerTabInfo.Text = "Information";
+            this.playerTabInfo.UseVisualStyleBackColor = true;
+            this.playerTabInfo.Visible = false;
+            this.playerTabInfo.Click += new System.EventHandler(this.playerTabInfo_Click);
+            // 
+            // playerList
+            // 
+            this.playerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playerList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.playerList.FormattingEnabled = true;
+            this.playerList.Location = new System.Drawing.Point(239, 13);
+            this.playerList.Name = "playerList";
+            this.playerList.Size = new System.Drawing.Size(317, 26);
+            this.playerList.TabIndex = 1;
+            this.playerList.SelectedIndexChanged += new System.EventHandler(this.playerList_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(125, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 18);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Select profile:";
+            // 
+            // playerInfoPanel
+            // 
+            this.playerInfoPanel.Controls.Add(this.playerAccountPanel);
+            this.playerInfoPanel.Controls.Add(this.playerLevelingPanel);
+            this.playerInfoPanel.Controls.Add(this.playerInventoryPanel);
+            this.playerInfoPanel.Location = new System.Drawing.Point(11, 103);
+            this.playerInfoPanel.Name = "playerInfoPanel";
+            this.playerInfoPanel.Size = new System.Drawing.Size(660, 385);
+            this.playerInfoPanel.TabIndex = 2;
+            // 
+            // playerLevelingPanel
+            // 
+            this.playerLevelingPanel.Controls.Add(this.playerLevelhover);
+            this.playerLevelingPanel.Controls.Add(this.playerLevel);
+            this.playerLevelingPanel.Controls.Add(this.playerExphover);
+            this.playerLevelingPanel.Controls.Add(this.playerExp);
+            this.playerLevelingPanel.ForeColor = System.Drawing.Color.LightGray;
+            this.playerLevelingPanel.Location = new System.Drawing.Point(357, 3);
+            this.playerLevelingPanel.Name = "playerLevelingPanel";
+            this.playerLevelingPanel.Size = new System.Drawing.Size(300, 162);
+            this.playerLevelingPanel.TabIndex = 7;
+            this.playerLevelingPanel.TabStop = false;
+            this.playerLevelingPanel.Text = "Player leveling";
+            this.playerLevelingPanel.Visible = false;
+            // 
+            // playerLevelhover
+            // 
+            this.playerLevelhover.AutoSize = true;
+            this.playerLevelhover.Location = new System.Drawing.Point(6, 30);
+            this.playerLevelhover.Name = "playerLevelhover";
+            this.playerLevelhover.Size = new System.Drawing.Size(45, 18);
+            this.playerLevelhover.TabIndex = 3;
+            this.playerLevelhover.Text = "Level";
+            // 
+            // playerLevel
+            // 
+            this.playerLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerLevel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerLevel.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.playerLevel.ForeColor = System.Drawing.Color.LightGray;
+            this.playerLevel.Location = new System.Drawing.Point(9, 50);
+            this.playerLevel.Name = "playerLevel";
+            this.playerLevel.Size = new System.Drawing.Size(276, 29);
+            this.playerLevel.TabIndex = 1;
+            this.playerLevel.Text = "Placeholder";
+            // 
+            // playerExphover
+            // 
+            this.playerExphover.AutoSize = true;
+            this.playerExphover.Location = new System.Drawing.Point(6, 90);
+            this.playerExphover.Name = "playerExphover";
+            this.playerExphover.Size = new System.Drawing.Size(82, 18);
+            this.playerExphover.TabIndex = 4;
+            this.playerExphover.Text = "Experience";
+            // 
+            // playerExp
+            // 
+            this.playerExp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerExp.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerExp.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.playerExp.ForeColor = System.Drawing.Color.LightGray;
+            this.playerExp.Location = new System.Drawing.Point(9, 110);
+            this.playerExp.Name = "playerExp";
+            this.playerExp.Size = new System.Drawing.Size(276, 29);
+            this.playerExp.TabIndex = 2;
+            this.playerExp.Text = "Placeholder";
+            // 
             // playerInventoryPanel
             // 
+            this.playerInventoryPanel.Controls.Add(this.playerGVhover);
+            this.playerInventoryPanel.Controls.Add(this.playerGV);
             this.playerInventoryPanel.Controls.Add(this.playerFactionhover);
             this.playerInventoryPanel.Controls.Add(this.playerAIDhover);
             this.playerInventoryPanel.Controls.Add(this.playerFaction);
@@ -196,14 +330,95 @@
             this.playerInventoryPanel.ForeColor = System.Drawing.Color.LightGray;
             this.playerInventoryPanel.Location = new System.Drawing.Point(3, 3);
             this.playerInventoryPanel.Name = "playerInventoryPanel";
-            this.playerInventoryPanel.Size = new System.Drawing.Size(300, 228);
+            this.playerInventoryPanel.Size = new System.Drawing.Size(300, 340);
             this.playerInventoryPanel.TabIndex = 3;
             this.playerInventoryPanel.TabStop = false;
             this.playerInventoryPanel.Text = "Player information";
             this.playerInventoryPanel.Visible = false;
             // 
+            // playerFactionhover
+            // 
+            this.playerFactionhover.AutoSize = true;
+            this.playerFactionhover.Location = new System.Drawing.Point(6, 150);
+            this.playerFactionhover.Name = "playerFactionhover";
+            this.playerFactionhover.Size = new System.Drawing.Size(56, 18);
+            this.playerFactionhover.TabIndex = 6;
+            this.playerFactionhover.Text = "Faction";
+            // 
+            // playerAIDhover
+            // 
+            this.playerAIDhover.AutoSize = true;
+            this.playerAIDhover.Location = new System.Drawing.Point(6, 30);
+            this.playerAIDhover.Name = "playerAIDhover";
+            this.playerAIDhover.Size = new System.Drawing.Size(32, 18);
+            this.playerAIDhover.TabIndex = 3;
+            this.playerAIDhover.Text = "AID";
+            // 
+            // playerFaction
+            // 
+            this.playerFaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerFaction.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerFaction.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.playerFaction.ForeColor = System.Drawing.Color.LightGray;
+            this.playerFaction.Location = new System.Drawing.Point(9, 170);
+            this.playerFaction.Name = "playerFaction";
+            this.playerFaction.ReadOnly = true;
+            this.playerFaction.Size = new System.Drawing.Size(276, 29);
+            this.playerFaction.TabIndex = 5;
+            this.playerFaction.Text = "Placeholder";
+            this.playerFaction.MouseDown += new System.Windows.Forms.MouseEventHandler(this.playerFaction_MouseDown);
+            // 
+            // playerAID
+            // 
+            this.playerAID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerAID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerAID.Font = new System.Drawing.Font("Bahnschrift Light", 14F);
+            this.playerAID.ForeColor = System.Drawing.Color.LightGray;
+            this.playerAID.Location = new System.Drawing.Point(9, 50);
+            this.playerAID.Name = "playerAID";
+            this.playerAID.ReadOnly = true;
+            this.playerAID.Size = new System.Drawing.Size(276, 23);
+            this.playerAID.TabIndex = 1;
+            this.playerAID.Text = "Placeholder";
+            // 
+            // playerUserhover
+            // 
+            this.playerUserhover.AutoSize = true;
+            this.playerUserhover.Location = new System.Drawing.Point(6, 90);
+            this.playerUserhover.Name = "playerUserhover";
+            this.playerUserhover.Size = new System.Drawing.Size(77, 18);
+            this.playerUserhover.TabIndex = 4;
+            this.playerUserhover.Text = "Username";
+            // 
+            // playerUser
+            // 
+            this.playerUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerUser.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.playerUser.ForeColor = System.Drawing.Color.LightGray;
+            this.playerUser.Location = new System.Drawing.Point(9, 110);
+            this.playerUser.Name = "playerUser";
+            this.playerUser.Size = new System.Drawing.Size(276, 29);
+            this.playerUser.TabIndex = 2;
+            this.playerUser.Text = "Placeholder";
+            // 
+            // playerHealthPanel
+            // 
+            this.playerHealthPanel.Controls.Add(this.playerHealthBox);
+            this.playerHealthPanel.Location = new System.Drawing.Point(11, 103);
+            this.playerHealthPanel.Name = "playerHealthPanel";
+            this.playerHealthPanel.Size = new System.Drawing.Size(660, 385);
+            this.playerHealthPanel.TabIndex = 3;
+            // 
             // playerHealthBox
             // 
+            this.playerHealthBox.Controls.Add(this.label16);
+            this.playerHealthBox.Controls.Add(this.label15);
+            this.playerHealthBox.Controls.Add(this.label14);
+            this.playerHealthBox.Controls.Add(this.label13);
+            this.playerHealthBox.Controls.Add(this.label12);
+            this.playerHealthBox.Controls.Add(this.label6);
+            this.playerHealthBox.Controls.Add(this.label3);
             this.playerHealthBox.Controls.Add(this.playerHealthRightLeg);
             this.playerHealthBox.Controls.Add(this.playerHealthLeftLeg);
             this.playerHealthBox.Controls.Add(this.playerHealthRightArm);
@@ -310,28 +525,6 @@
             this.playerHealthHead.TabIndex = 0;
             this.playerHealthHead.Text = "0";
             this.playerHealthHead.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // playerList
-            // 
-            this.playerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.playerList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.playerList.FormattingEnabled = true;
-            this.playerList.Location = new System.Drawing.Point(239, 13);
-            this.playerList.Name = "playerList";
-            this.playerList.Size = new System.Drawing.Size(317, 26);
-            this.playerList.TabIndex = 1;
-            this.playerList.SelectedIndexChanged += new System.EventHandler(this.playerList_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(125, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 18);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Select profile:";
             // 
             // qolPanel
             // 
@@ -497,175 +690,148 @@
     "essential.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerAID
+            // label3
             // 
-            this.playerAID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.playerAID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.playerAID.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
-            this.playerAID.ForeColor = System.Drawing.Color.LightGray;
-            this.playerAID.Location = new System.Drawing.Point(9, 50);
-            this.playerAID.Name = "playerAID";
-            this.playerAID.Size = new System.Drawing.Size(276, 29);
-            this.playerAID.TabIndex = 1;
-            this.playerAID.Text = "Placeholder";
+            this.label3.Location = new System.Drawing.Point(115, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 18);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Head";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerUser
+            // label6
             // 
-            this.playerUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.playerUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.playerUser.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
-            this.playerUser.ForeColor = System.Drawing.Color.LightGray;
-            this.playerUser.Location = new System.Drawing.Point(9, 110);
-            this.playerUser.Name = "playerUser";
-            this.playerUser.Size = new System.Drawing.Size(276, 29);
-            this.playerUser.TabIndex = 2;
-            this.playerUser.Text = "Placeholder";
+            this.label6.Location = new System.Drawing.Point(115, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 18);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Chest";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerAIDhover
+            // label12
             // 
-            this.playerAIDhover.AutoSize = true;
-            this.playerAIDhover.Location = new System.Drawing.Point(6, 30);
-            this.playerAIDhover.Name = "playerAIDhover";
-            this.playerAIDhover.Size = new System.Drawing.Size(32, 18);
-            this.playerAIDhover.TabIndex = 3;
-            this.playerAIDhover.Text = "AID";
-            this.playerAIDhover.Visible = false;
+            this.label12.Location = new System.Drawing.Point(115, 202);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(70, 18);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "Torso";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerUserhover
+            // label13
             // 
-            this.playerUserhover.AutoSize = true;
-            this.playerUserhover.Location = new System.Drawing.Point(6, 90);
-            this.playerUserhover.Name = "playerUserhover";
-            this.playerUserhover.Size = new System.Drawing.Size(77, 18);
-            this.playerUserhover.TabIndex = 4;
-            this.playerUserhover.Text = "Username";
-            this.playerUserhover.Visible = false;
+            this.label13.Location = new System.Drawing.Point(30, 69);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 18);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "L. Arm";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerFactionhover
+            // label14
             // 
-            this.playerFactionhover.AutoSize = true;
-            this.playerFactionhover.Location = new System.Drawing.Point(6, 150);
-            this.playerFactionhover.Name = "playerFactionhover";
-            this.playerFactionhover.Size = new System.Drawing.Size(56, 18);
-            this.playerFactionhover.TabIndex = 6;
-            this.playerFactionhover.Text = "Faction";
-            this.playerFactionhover.Visible = false;
+            this.label14.Location = new System.Drawing.Point(200, 69);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(70, 18);
+            this.label14.TabIndex = 11;
+            this.label14.Text = "R. Arm";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerFaction
+            // label15
             // 
-            this.playerFaction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.playerFaction.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.playerFaction.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
-            this.playerFaction.ForeColor = System.Drawing.Color.LightGray;
-            this.playerFaction.Location = new System.Drawing.Point(9, 170);
-            this.playerFaction.Name = "playerFaction";
-            this.playerFaction.Size = new System.Drawing.Size(276, 29);
-            this.playerFaction.TabIndex = 5;
-            this.playerFaction.Text = "Placeholder";
+            this.label15.Location = new System.Drawing.Point(30, 210);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 18);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "L. Leg";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerInfoPanel
+            // label16
             // 
-            this.playerInfoPanel.Controls.Add(this.playerLevelingPanel);
-            this.playerInfoPanel.Controls.Add(this.playerInventoryPanel);
-            this.playerInfoPanel.Location = new System.Drawing.Point(11, 103);
-            this.playerInfoPanel.Name = "playerInfoPanel";
-            this.playerInfoPanel.Size = new System.Drawing.Size(660, 385);
-            this.playerInfoPanel.TabIndex = 2;
+            this.label16.Location = new System.Drawing.Point(200, 210);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 18);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "R. Leg";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // playerLevelingPanel
+            // playerAccountPanel
             // 
-            this.playerLevelingPanel.Controls.Add(this.label4);
-            this.playerLevelingPanel.Controls.Add(this.textBox2);
-            this.playerLevelingPanel.Controls.Add(this.label5);
-            this.playerLevelingPanel.Controls.Add(this.textBox3);
-            this.playerLevelingPanel.ForeColor = System.Drawing.Color.LightGray;
-            this.playerLevelingPanel.Location = new System.Drawing.Point(357, 3);
-            this.playerLevelingPanel.Name = "playerLevelingPanel";
-            this.playerLevelingPanel.Size = new System.Drawing.Size(300, 228);
-            this.playerLevelingPanel.TabIndex = 7;
-            this.playerLevelingPanel.TabStop = false;
-            this.playerLevelingPanel.Text = "Player leveling";
-            this.playerLevelingPanel.Visible = false;
+            this.playerAccountPanel.Controls.Add(this.launcherUserhover);
+            this.playerAccountPanel.Controls.Add(this.launcherUser);
+            this.playerAccountPanel.Controls.Add(this.launcherPwhover);
+            this.playerAccountPanel.Controls.Add(this.launcherPw);
+            this.playerAccountPanel.ForeColor = System.Drawing.Color.LightGray;
+            this.playerAccountPanel.Location = new System.Drawing.Point(357, 185);
+            this.playerAccountPanel.Name = "playerAccountPanel";
+            this.playerAccountPanel.Size = new System.Drawing.Size(300, 158);
+            this.playerAccountPanel.TabIndex = 8;
+            this.playerAccountPanel.TabStop = false;
+            this.playerAccountPanel.Text = "Account information";
+            this.playerAccountPanel.Visible = false;
             // 
-            // label4
+            // launcherUserhover
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 18);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Level";
-            this.label4.Visible = false;
+            this.launcherUserhover.AutoSize = true;
+            this.launcherUserhover.Location = new System.Drawing.Point(6, 30);
+            this.launcherUserhover.Name = "launcherUserhover";
+            this.launcherUserhover.Size = new System.Drawing.Size(141, 18);
+            this.launcherUserhover.TabIndex = 3;
+            this.launcherUserhover.Text = "Launcher username";
             // 
-            // textBox2
+            // launcherUser
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
-            this.textBox2.ForeColor = System.Drawing.Color.LightGray;
-            this.textBox2.Location = new System.Drawing.Point(9, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(276, 29);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "Placeholder";
+            this.launcherUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.launcherUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.launcherUser.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.launcherUser.ForeColor = System.Drawing.Color.LightGray;
+            this.launcherUser.Location = new System.Drawing.Point(9, 50);
+            this.launcherUser.Name = "launcherUser";
+            this.launcherUser.Size = new System.Drawing.Size(276, 29);
+            this.launcherUser.TabIndex = 1;
+            this.launcherUser.Text = "Placeholder";
             // 
-            // label5
+            // launcherPwhover
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 90);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 18);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Experience";
-            this.label5.Visible = false;
+            this.launcherPwhover.AutoSize = true;
+            this.launcherPwhover.Location = new System.Drawing.Point(6, 90);
+            this.launcherPwhover.Name = "launcherPwhover";
+            this.launcherPwhover.Size = new System.Drawing.Size(140, 18);
+            this.launcherPwhover.TabIndex = 4;
+            this.launcherPwhover.Text = "Launcher password";
             // 
-            // textBox3
+            // launcherPw
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
-            this.textBox3.ForeColor = System.Drawing.Color.LightGray;
-            this.textBox3.Location = new System.Drawing.Point(9, 110);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(276, 29);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "Placeholder";
+            this.launcherPw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.launcherPw.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.launcherPw.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.launcherPw.ForeColor = System.Drawing.Color.LightGray;
+            this.launcherPw.Location = new System.Drawing.Point(9, 110);
+            this.launcherPw.Name = "launcherPw";
+            this.launcherPw.Size = new System.Drawing.Size(276, 29);
+            this.launcherPw.TabIndex = 2;
+            this.launcherPw.Text = "Placeholder";
             // 
-            // playerHealthPanel
+            // playerGVhover
             // 
-            this.playerHealthPanel.Controls.Add(this.playerHealthBox);
-            this.playerHealthPanel.Location = new System.Drawing.Point(11, 103);
-            this.playerHealthPanel.Name = "playerHealthPanel";
-            this.playerHealthPanel.Size = new System.Drawing.Size(660, 385);
-            this.playerHealthPanel.TabIndex = 3;
+            this.playerGVhover.AutoSize = true;
+            this.playerGVhover.Location = new System.Drawing.Point(6, 210);
+            this.playerGVhover.Name = "playerGVhover";
+            this.playerGVhover.Size = new System.Drawing.Size(101, 18);
+            this.playerGVhover.TabIndex = 8;
+            this.playerGVhover.Text = "Game version";
             // 
-            // playerTabInfo
+            // playerGV
             // 
-            this.playerTabInfo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.playerTabInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.playerTabInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playerTabInfo.Location = new System.Drawing.Point(11, 62);
-            this.playerTabInfo.Name = "playerTabInfo";
-            this.playerTabInfo.Size = new System.Drawing.Size(149, 35);
-            this.playerTabInfo.TabIndex = 4;
-            this.playerTabInfo.Text = "Information";
-            this.playerTabInfo.UseVisualStyleBackColor = true;
-            this.playerTabInfo.Visible = false;
-            this.playerTabInfo.Click += new System.EventHandler(this.playerTabInfo_Click);
-            // 
-            // playerTabHealth
-            // 
-            this.playerTabHealth.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.playerTabHealth.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.playerTabHealth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playerTabHealth.Location = new System.Drawing.Point(166, 62);
-            this.playerTabHealth.Name = "playerTabHealth";
-            this.playerTabHealth.Size = new System.Drawing.Size(149, 35);
-            this.playerTabHealth.TabIndex = 5;
-            this.playerTabHealth.Text = "Health";
-            this.playerTabHealth.UseVisualStyleBackColor = true;
-            this.playerTabHealth.Visible = false;
-            this.playerTabHealth.Click += new System.EventHandler(this.playerTabHealth_Click);
+            this.playerGV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.playerGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playerGV.Font = new System.Drawing.Font("Bahnschrift Light", 18F);
+            this.playerGV.ForeColor = System.Drawing.Color.LightGray;
+            this.playerGV.Location = new System.Drawing.Point(9, 230);
+            this.playerGV.Name = "playerGV";
+            this.playerGV.ReadOnly = true;
+            this.playerGV.Size = new System.Drawing.Size(276, 29);
+            this.playerGV.TabIndex = 7;
+            this.playerGV.Text = "Placeholder";
+            this.playerGV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.playerGV_MouseDown);
             // 
             // mainForm
             // 
@@ -696,16 +862,18 @@
             this.flagPanel.PerformLayout();
             this.playerPanel.ResumeLayout(false);
             this.playerPanel.PerformLayout();
+            this.playerInfoPanel.ResumeLayout(false);
+            this.playerLevelingPanel.ResumeLayout(false);
+            this.playerLevelingPanel.PerformLayout();
             this.playerInventoryPanel.ResumeLayout(false);
             this.playerInventoryPanel.PerformLayout();
+            this.playerHealthPanel.ResumeLayout(false);
             this.playerHealthBox.ResumeLayout(false);
             this.playerHealthBox.PerformLayout();
             this.welcomePanel.ResumeLayout(false);
             this.welcomePanel.PerformLayout();
-            this.playerInfoPanel.ResumeLayout(false);
-            this.playerLevelingPanel.ResumeLayout(false);
-            this.playerLevelingPanel.PerformLayout();
-            this.playerHealthPanel.ResumeLayout(false);
+            this.playerAccountPanel.ResumeLayout(false);
+            this.playerAccountPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -753,13 +921,27 @@
         private System.Windows.Forms.TextBox playerFaction;
         private System.Windows.Forms.Panel playerInfoPanel;
         private System.Windows.Forms.GroupBox playerLevelingPanel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label playerLevelhover;
+        private System.Windows.Forms.TextBox playerLevel;
+        private System.Windows.Forms.Label playerExphover;
+        private System.Windows.Forms.TextBox playerExp;
         private System.Windows.Forms.Panel playerHealthPanel;
         private System.Windows.Forms.Button playerTabInfo;
         private System.Windows.Forms.Button playerTabHealth;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox playerAccountPanel;
+        private System.Windows.Forms.Label launcherUserhover;
+        private System.Windows.Forms.TextBox launcherUser;
+        private System.Windows.Forms.Label launcherPwhover;
+        private System.Windows.Forms.TextBox launcherPw;
+        private System.Windows.Forms.Label playerGVhover;
+        private System.Windows.Forms.TextBox playerGV;
     }
 }
 

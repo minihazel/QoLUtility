@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -18,7 +19,8 @@ namespace QoLUtility
 {
     public partial class mainForm : Form
     {
-        public string currentDir = "F:\\SPT Iterations\\SPT 3.5.5";
+        // public string currentDir = Environment.CurrentDirectory();
+        public string currentDir = "C:\\SPT 3.5.5";
 
         /*         LIST SYSTEM         */
         int default_item_height = 35; // item height
@@ -502,8 +504,8 @@ namespace QoLUtility
 
         public void initializePlayerSystem()
         {
-            /*
             playerList.Items.Clear();
+            /*
             foreach (Control component in playerList.Controls)
             {
                 if (component is GroupBox)
@@ -555,15 +557,84 @@ namespace QoLUtility
         {
             if (playerList.SelectedIndex > -1)
             {
+                // set all necessary components visible
                 playerTabHealth.Visible = true;
                 playerTabInfo.Visible = true;
 
                 playerHealthBox.Visible = true;
                 playerInventoryPanel.Visible = true;
                 playerLevelingPanel.Visible = true;
+                playerAccountPanel.Visible = true;
+
+                // code stuff
+                string selectedName = playerList.SelectedItem.ToString();
+                int playerIndex = playerList.SelectedIndex;
+
+                string userFolder = Path.Combine(currentDir, "user");
+                string profilesFolder = Path.Combine(userFolder, "profiles");
+
+                bool existsUser = Directory.Exists(userFolder);
+                bool existsProfiles = Directory.Exists(profilesFolder);
+
+                if (existsUser && existsProfiles)
+                {
+                    string[] profiles = Directory.GetFiles(profilesFolder);
+                    string matchedProfile = profiles[playerIndex];
+
+                    bool doesProfileExist = File.Exists(matchedProfile);
+
+                    if (doesProfileExist)
+                    {
+                        readProfileInfo(matchedProfile);
+                    }
+                }
 
                 playerInfoPanel.BringToFront();
             }
+        }
+
+        public void readProfileInfo(string path)
+        {
+            string fileToRead = File.ReadAllText(path);
+            JavaScriptSerializer profileJson = new JavaScriptSerializer();
+            dynamic readCore = profileJson.Deserialize<dynamic>(fileToRead);
+
+            // Read values and variables
+            string ACCOUNT_AID = (string)readCore["info"]["id"];
+            string ACCOUNT_USERNAME = (string)readCore["info"]["username"];
+            string ACCOUNT_PW = (string)readCore["info"]["password"];
+            
+            string INGAME_USERNAME = (string)readCore["characters"]["pmc"]["Info"]["Nickname"];
+            string INGAME_FACTION = (string)readCore["characters"]["pmc"]["Info"]["Side"];
+            string INGAME_GAME_VERSION = (string)readCore["characters"]["pmc"]["Info"]["GameVersion"];
+            string INGAME_LEVEL = Convert.ToString((int)readCore["characters"]["pmc"]["Info"]["Level"]);
+            string INGAME_EXPERIENCE = Convert.ToString((int)readCore["characters"]["pmc"]["Info"]["Experience"]);
+
+            INGAME_FACTION = INGAME_FACTION.ToUpper();
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            INGAME_GAME_VERSION = textInfo.ToTitleCase(INGAME_GAME_VERSION);
+
+            // Assign values to components
+            playerAID.Text = ACCOUNT_AID;
+            playerUser.Text = INGAME_USERNAME;
+            playerFaction.Text = INGAME_FACTION;
+            playerLevel.Text = INGAME_LEVEL;
+            playerExp.Text = INGAME_EXPERIENCE;
+            launcherUser.Text = ACCOUNT_USERNAME;
+
+            INGAME_GAME_VERSION = INGAME_GAME_VERSION.Replace("_", " ");
+            INGAME_GAME_VERSION = textInfo.ToTitleCase(INGAME_GAME_VERSION);
+            playerGV.Text = INGAME_GAME_VERSION;
+
+            if (ACCOUNT_PW.Length == 0)
+            {
+                launcherPw.Text = "No password";
+            }
+            else
+            {
+                launcherPw.Text = ACCOUNT_PW;
+            }
+
         }
 
         private void playerTabInfo_Click(object sender, EventArgs e)
@@ -574,6 +645,38 @@ namespace QoLUtility
         private void playerTabHealth_Click(object sender, EventArgs e)
         {
             playerHealthPanel.BringToFront();
+        }
+
+        private void playerFaction_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (playerFaction.Text.ToLower())
+            {
+                case "bear":
+                    playerFaction.Text = "USEC";
+                    break;
+                case "usec":
+                    playerFaction.Text = "BEAR";
+                    break;
+            }
+        }
+
+        private void playerGV_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (playerGV.Text.ToLower())
+            {
+                case "standard":
+                    playerGV.Text = "Left Behind";
+                    break;
+                case "left behind":
+                    playerGV.Text = "Prepare for Darkness";
+                    break;
+                case "prepare for darkness":
+                    playerGV.Text = "Edge of Darkness";
+                    break;
+                case "edge of darkness":
+                    playerGV.Text = "Standard";
+                    break;
+            }
         }
     }
 }
