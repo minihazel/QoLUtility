@@ -69,6 +69,7 @@ namespace QoLUtility
             {
                 initializeSystem();
                 this.BackgroundImage = new Bitmap(Resources.default_wp);
+
             }
             else
             {
